@@ -32,6 +32,9 @@ spec:
           image: odoo:latest
           ports:
             - containerPort: 8069
+          env:
+            - name: "HOST"
+              value: "localhost"
       volumes:
         - name: pv-data
           persistentVolumeClaim:
