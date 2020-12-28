@@ -8,6 +8,6 @@ metadata:
 spec:
   ports:
     - port: 8069
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: odoo
