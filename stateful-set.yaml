@@ -16,7 +16,7 @@ spec:
       labels:
         app: odoo
     spec:
-      containers:
+      initContainers:
         - name: db
           image: postgres:latest
           envFrom:
@@ -27,8 +27,9 @@ spec:
           volumeMounts:
             - name: pv-data
               mountPath: /var/lib/postgresql/data
+      containers:
         - name: odoo
-          image: odo:latest
+          image: odoo:latest
           ports:
             - containerPort: 8069
       volumes:
