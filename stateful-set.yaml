@@ -1,37 +1,33 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: odoo
+  name: postgres-statefulset
   namespace: odoo
   labels:
-    app: odoo
+    app: postgres
 spec:
-  serviceName: "odoo"
+  serviceName: "postgres"
   replicas: 1
   selector:
     matchLabels:
-      app: odoo
+      app: postgres
   template:
     metadata:
       labels:
-        app: odoo
+        app: postgres
     spec:
-      initContainers:
-        - name: db
-          image: postgres:latest
+      containers:
+        - name: postgres
+          image: postgres:12
           envFrom:
             - configMapRef:
                 name: postgres-configuration
           ports:
             - containerPort: 5432
+              name: postgresdb
           volumeMounts:
             - name: pv-data
               mountPath: /var/lib/postgresql/data
-      containers:
-        - name: odoo
-          image: odoo:latest
-          ports:
-            - containerPort: 8069
       volumes:
         - name: pv-data
           persistentVolumeClaim:
