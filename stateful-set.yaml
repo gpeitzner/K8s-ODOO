@@ -35,6 +35,10 @@ spec:
           env:
             - name: "HOST"
               value: "localhost"
+            - name: "USER"
+              value: "odoo"
+            - name: "PASSWORD"
+              value: "odoo"
       volumes:
         - name: pv-data
           persistentVolumeClaim:
