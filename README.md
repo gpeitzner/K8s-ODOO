@@ -1,1 +1,1 @@
-# k8s-ODOO
+# K8s-ODOO
